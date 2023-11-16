@@ -50,6 +50,11 @@ void operate_on_stack(char **line, size_t *n, FILE *file, stack_t **head)
 			fp = get_op_func(opcode);
 			fp(head, line_n);
 		}
+		else if (strcmp("pint", opcode) == 0)
+		{
+			fp = get_op_func(opcode);
+			fp(head, line_n);
+		}
 		else
 		{
 			fprintf(stderr, "L%i: unknown instruction %s\n",

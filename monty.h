@@ -37,6 +37,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+void pint(stack_t **head, unsigned int line_number);
 void read_file(int *, char **, char*, stack_t **);
 void add_to_emptylist(stack_t **head, stack_t *new);
 void append(stack_t **head, unsigned int n);

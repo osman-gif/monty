@@ -5,6 +5,26 @@
 /*int m;*/
 
 /**
+ * pint - Prints the top value of the stack
+ * @line_number: line number in the file
+ * @head: Pointer to the first pointer of stack_t
+ */
+
+void pint(stack_t **head, unsigned int line_number)
+{
+	stack_t *top;
+
+	if (*head == NULL)
+	{
+		printf("L<%d>: can't pint, stack empty\n", line_number);
+	}
+	for (top = *head; top->next; top = top->next)
+	{
+
+	}
+	printf("%d\n", top->n);
+}
+/**
  * add_to_emptylist - Adds a node to an empty list
  * @head: Pointer to the first node in stack_t stack
  * @new: Node to be added
@@ -31,7 +51,7 @@ void append(stack_t **head, __attribute__((unused)) unsigned int n)
 	new = malloc(sizeof(new));
 	if (new == NULL)
 	{
-		fprintf(stderr,"Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new->n = m;
@@ -53,10 +73,9 @@ void append(stack_t **head, __attribute__((unused)) unsigned int n)
 		{
 		}
 		/* Put the new node at the begining of the list */
-		/* tmp->prev = new;
-		 * tmp->next = tmp
-		 * new->prev = NULL;
-		 */
+		/* tmp->prev = new;*/
+		 /* tmp->next = tmp */
+		 /* new->prev = NULL;*/
 		tmp->next = new;
 		new->prev = tmp;
 		new->next = NULL;
