@@ -87,7 +87,6 @@ int main(int argc, char __attribute__((unused)) **argv)
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		fclose(file);
 		exit(EXIT_FAILURE);
 	}
 
