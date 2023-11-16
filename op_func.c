@@ -17,6 +17,7 @@ void pint(stack_t **head, unsigned int line_number)
 	if (*head == NULL)
 	{
 		printf("L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
 	}
 	for (top = *head; top->next; top = top->next)
 	{
