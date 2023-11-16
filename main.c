@@ -78,7 +78,7 @@ int main(int argc, char __attribute__((unused)) **argv)
 
 	if (argc != 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
