@@ -30,7 +30,6 @@ void operate_on_stack(char **line, size_t *n, FILE *file, stack_t **head)
 			if (!argstr)
 			{
 				printf("L%i: usage: push integer\n", line_n);
-				fclose(file);
 				exit(EXIT_FAILURE);
 			}
 			m = atoi(argstr);
@@ -49,7 +48,6 @@ void operate_on_stack(char **line, size_t *n, FILE *file, stack_t **head)
 		{
 			printf("L%i: unknown instruction %s\n",
 					line_n, opcode);
-			fclose(file);
 			exit(EXIT_FAILURE);
 		}
 
