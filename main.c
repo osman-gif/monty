@@ -91,6 +91,7 @@ int main(int argc, char __attribute__((unused)) **argv)
 	}
 
 	operate_on_stack(&line, &n, file, &head);
+	fclose(file);
 
 	return (0);
 }
