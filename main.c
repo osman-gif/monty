@@ -24,25 +24,29 @@ void operate_on_stack(char **line, size_t *n, FILE *file, stack_t **head)
 	{
 		line_n++;
 		opcode = strtok(*line, delim);
-
 		if (strcmp("push", opcode) == 0)
 		{
 			argstr = strtok(NULL, delim);
-			arg = atoi(argstr);
-			if (!arg || !argstr)
+			if (!argstr)
 			{
 				printf("L%i: usage: push integer\n", line_n);
 				exit(EXIT_FAILURE);
 			}
-			m = atoi(argstr);
-
+			else
+			{
+				arg = atoi(argstr);
+				if (!arg)
+				{
+					printf("L%i: usage: push integer\n", line_n);
+					exit(EXIT_FAILURE);
+				}
+			}
+			m = arg;
 			fp = get_op_func(opcode);
 			fp(head, line_n);
-			/* printf("push\n"); */
 		}
 		else if (strcmp("pall", opcode) == 0)
 		{
-			/*printf("pall\n");*/
 			fp = get_op_func(opcode);
 			fp(head, line_n);
 		}
@@ -52,7 +56,6 @@ void operate_on_stack(char **line, size_t *n, FILE *file, stack_t **head)
 					line_n, opcode);
 			exit(EXIT_FAILURE);
 		}
-
 	}
 }
 /**
