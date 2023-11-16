@@ -16,6 +16,7 @@ void operate_on_stack(char **line, size_t *n, FILE *file, stack_t **head)
 	char *opcode, *argstr, *delim;
 	unsigned int line_n;
 	void (*fp)(stack_t **stack, unsigned int line_number);
+	int arg;
 
 	delim = " \n\0";
 	line_n = 0;
@@ -27,9 +28,10 @@ void operate_on_stack(char **line, size_t *n, FILE *file, stack_t **head)
 		if (strcmp("push", opcode) == 0)
 		{
 			argstr = strtok(NULL, delim);
-			if (!argstr)
+			arg = atoi(argstr);
+			if (!arg)
 			{
-				fprintf(stderr, "L%i: usage: push integer\n", line_n);
+				printf("L%i: usage: push integer\n", line_n);
 				exit(EXIT_FAILURE);
 			}
 			m = atoi(argstr);
