@@ -100,7 +100,7 @@ void print_list(stack_t **head, unsigned int line_number)
 		{
 			printf("%d\n", (*head)->n);
 			if (!(*head)->n)
-				printf("L%i: usage: push integer\n",
+				fprintf(stderr, "L%i: usage: push integer\n",
 						line_number);
 			/*tmp = *head;*/
 			/* head = head->prev */
