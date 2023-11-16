@@ -29,7 +29,7 @@ void operate_on_stack(char **line, size_t *n, FILE *file, stack_t **head)
 			argstr = strtok(NULL, delim);
 			if (!argstr)
 			{
-				printf("L%i: usage: push integer\n", line_n);
+				fprintf(stderr, "L%i: usage: push integer\n", line_n);
 				exit(EXIT_FAILURE);
 			}
 			m = atoi(argstr);
