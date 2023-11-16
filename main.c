@@ -46,7 +46,7 @@ void operate_on_stack(char **line, size_t *n, FILE *file, stack_t **head)
 		}
 		else
 		{
-			printf("L%i: unknown instruction %s\n",
+			fprintf(stderr, "L%i: unknown instruction %s\n",
 					line_n, opcode);
 			exit(EXIT_FAILURE);
 		}
