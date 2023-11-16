@@ -30,6 +30,7 @@ void operate_on_stack(char **line, size_t *n, FILE *file, stack_t **head)
 			if (!argstr)
 			{
 				printf("L%i: usage: push integer\n", line_n);
+				fclose(file);
 				exit(EXIT_FAILURE);
 			}
 			m = atoi(argstr);
@@ -48,6 +49,7 @@ void operate_on_stack(char **line, size_t *n, FILE *file, stack_t **head)
 		{
 			printf("L%i: unknown instruction %s\n",
 					line_n, opcode);
+			fclose(file);
 			exit(EXIT_FAILURE);
 		}
 
@@ -87,6 +89,7 @@ int main(int argc, char __attribute__((unused)) **argv)
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		fclose(file);
 		exit(EXIT_FAILURE);
 	}
 
