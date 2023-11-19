@@ -130,8 +130,11 @@ void print_list(stack_t **head, unsigned int line_number)
 		{
 			printf("%d\n", tmp->n);
 			if (!tmp->n)
+			{
 				fprintf(stderr, "L%i: usage: push integer\n",
 						line_number);
+				exit(EXIT_FAILURE);
+			}
 			/*tmp = *head;*/
 			/* head = head->prev */
 			tmp = tmp->prev;
