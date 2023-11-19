@@ -104,7 +104,7 @@ void pop(stack_t **head, unsigned int line_number)
 	}
 	tmp = (*head)->prev;
 	free(*head);
-	*head = tmp;	
+	*head = tmp;
 }
 
 /**
