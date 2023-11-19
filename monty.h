@@ -37,11 +37,12 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+void free_stack(stack_t *head);
 void pint(stack_t **head, unsigned int line_number);
 void read_file(int *, char **, char*, stack_t **);
 void add_to_emptylist(stack_t **head, stack_t *new);
 void append(stack_t **head, unsigned int n);
-stack_t *pop(stack_t **head);
+void pop(stack_t **head, unsigned int n);
 void print_list(stack_t **head, unsigned int line_number);
 void (*get_op_func(char *s))(stack_t **stack, unsigned int line_number);
 #endif

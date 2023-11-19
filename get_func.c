@@ -15,6 +15,8 @@ void (*get_op_func(char *s))(stack_t **stack, unsigned int line_number)
 	instruction_t ops[] = {
 		{"push", append},
 		{"pall", print_list},
+		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}
 	};
 
@@ -31,4 +33,25 @@ void (*get_op_func(char *s))(stack_t **stack, unsigned int line_number)
 		i++;
 	}
 	return (NULL);
+}
+
+/**
+ * free_stack - Frees the stack_t stack
+ * @head: Pointer to the first pointer
+ */
+
+void free_stack(stack_t *head)
+{
+	stack_t *tmp;
+
+	if (head == NULL)
+	{
+		printf("NULL\n");
+	}
+	while (head)
+	{
+		tmp = (head)->prev;
+		free(head);
+		head = tmp;
+	}
 }

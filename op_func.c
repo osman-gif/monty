@@ -19,10 +19,8 @@ void pint(stack_t **head, unsigned int line_number)
 		printf("L<%d>: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	for (top = *head; top->next; top = top->next)
-	{
+	top = *head;
 
-	}
 	printf("%d\n", top->n);
 }
 /**
@@ -33,8 +31,9 @@ void pint(stack_t **head, unsigned int line_number)
 
 void add_to_emptylist(stack_t **head, stack_t *new)
 {
-	new->next = NULL;
-	new->prev = NULL;
+	(new)->next = NULL;
+	(new)->prev = NULL;
+	(new)->n = m;
 	*head = new;
 }
 
@@ -49,24 +48,28 @@ void append(stack_t **head, __attribute__((unused)) unsigned int n)
 	/*int i;*/
 	stack_t __attribute__((unused)) *tmp, *new, *prev, *next;
 
-	new = malloc(sizeof(new));
+	new = (stack_t *) malloc(sizeof(new));
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new->n = m;
-	tmp = *head;
+	/*tmp = *head;*/
 
 	/* if list is empty, make new the first pointer */
 	if (*head == NULL)
 	{
+		/* add_to_emptylist(head, new); */
 		/*printf("tis is null\n");*/
+		new->prev = NULL;
+		new->next = NULL;
 		*head = new;
 		/*printf("n: %d\n", (*head)->n);*/
 	}
 	else
 	{
+		tmp = *head;
 
 		/* Traverse the list till the last node added */
 		/* tmp->prev; tmp = tmp->prev */
@@ -82,24 +85,28 @@ void append(stack_t **head, __attribute__((unused)) unsigned int n)
 		new->next = NULL;
 		*head = new;
 	}
-
 }
 
 /**
  * pop - Pops a node from the top of a stack_t stack
+ * @line_number: Number of a line in the file
  * @head: Node to the top node of the stack_ta
- * Return: Return the popped node
  */
 
-stack_t *pop(stack_t **head)
+void pop(stack_t **head, unsigned int line_number)
 {
-	stack_t *popped;
+	stack_t *tmp;
 
-	/* pop first node */
-	popped = (*head);
-	*head = (*head)->prev;
-	(*head)->next = NULL;
-	return (popped);
+	if (*head == NULL)
+	{
+		printf("L<%d>: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	tmp = (*head)->prev;
+	free(*head);
+	*head = tmp;
+	
+
 }
 
 /**
@@ -110,20 +117,26 @@ stack_t *pop(stack_t **head)
  */
 void print_list(stack_t **head, unsigned int line_number)
 {
-	/*stack_t *tmp;*/
+	stack_t *tmp;
 
+	/* tmp = *head; */
 	if (*head == NULL)
 	{
+		exit(EXIT_FAILURE);
+		free(head);
 	}
 	else
-		while (*head)
+	{
+		tmp = *head;
+		while (tmp)
 		{
-			printf("%d\n", (*head)->n);
-			if (!(*head)->n)
+			printf("%d\n", tmp->n);
+			if (!tmp->n)
 				fprintf(stderr, "L%i: usage: push integer\n",
 						line_number);
 			/*tmp = *head;*/
 			/* head = head->prev */
-			*head = (*head)->prev;
+			tmp = tmp->prev;
 		}
+	}
 }
